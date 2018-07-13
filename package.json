@@ -1,0 +1,22 @@
+{
+  "name": "generate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"yarn run server\" \"yarn run client\"",
+    "client": "cd client && yarn start",
+    "server": "sh run.sh",
+    "build": "rimraf server/public/* && cd client && yarn build && cd ../server && yarn build",
+    "prelint": "chalk cyan bold 'Running Linter'",
+    "lint": "standard",
+    "postlint": "chalk cyan bold 'Linter Finished'"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "concurrently": "^3.6.0"
+  },
+  "proxy": "http://localhost:5000"
+}
