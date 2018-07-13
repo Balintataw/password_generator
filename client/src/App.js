@@ -4,11 +4,14 @@ import './App.css'
 
 class App extends Component {
 	state = {
-		pw: ''
+		pw: '',
+		acrostic: 'trump'
 	}
 	handleClick = () => {
 		console.log('click')
-		axios.get('http://localhost:5000/get_password').then(resp => {
+		axios.post('http://localhost:5000/get_password', 
+		JSON.stringify({'text': this.state.acrostic}), {headers: { 'Content-Type': 'application/json; charset=utf-8' }}
+			).then(resp => {
 			this.setState({
 				pw: resp.data
 			})
@@ -17,10 +20,26 @@ class App extends Component {
 			console.log('err', err)
 		})
 	}
+	handleChange = (e) => {
+		e.preventDefault()
+		this.setState({
+		  [e.target.name]: e.target.value
+		})
+	  }
 	render() {
 		return (
-			<div>
-				<h3>Generator</h3>
+			<div className="wrapper">
+				<h3>Password Generator</h3>
+				<p>Acrostic term to create your password:</p>
+				<input onChange={this.handleChange} 
+                  autoComplete="off"
+                  type="text" 
+                  name="acrostic" 
+                  value={this.state.acrostic}
+                  className="input"
+                  />
+				  <p>{this.state.acrostic}</p>
+				  <small>eg, 'face' may return a password of 'froth academic cheap exercise'</small>
 				<button onClick={this.handleClick}>Get a new password</button>
 				<p>{this.state.pw ? this.state.pw : ''}</p>
 			</div>
