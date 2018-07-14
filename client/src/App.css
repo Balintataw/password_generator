@@ -1,5 +1,40 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
+	align-items: center;
+}
+
+.wrapper-inner {
+	width: 50%;
+	background-color: rgb(255, 242, 226);
+	padding: 20px;
+}
+
+.acrostic-input, .min-length-input, .max-length-input {
+	outline: none;
+	border: 1px solid grey;
+	border-radius: 5px;
+	background-color: rgb(201, 186, 168);
+	padding: 5px;
+}
+
+.password-button {
+	padding: 8px;
+	margin-top: 20px;
+	border-radius: 5px;
+	background-color: rgb(143, 197, 248);
+	outline: none;
+}
+
+.small-text-spacer {
+	padding: 0 0 15px 0;
 }
